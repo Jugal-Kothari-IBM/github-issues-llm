@@ -11,6 +11,7 @@ def get_issue_context(issue_number):
     g = Github(os.environ["GITHUB_TOKEN"])
     repo = g.get_repo(os.environ["GITHUB_REPOSITORY"])
     issue = repo.get_issue(number=issue_number)
+    print("get issue context working correctly. repo ", repo)
     return {
         "title": issue.title,
         "body": issue.body,
@@ -20,8 +21,8 @@ def get_issue_context(issue_number):
 def generate_llm_response(context):
     """Generate response using WatsonX.ai Granite model"""
     # WatsonX.ai credentials and configuration
-    api_key = os.environ["IBM_CLOUD_API_KEY"]
-    project_id = os.environ["IBM_PROJECT_ID"]
+    api_key = os.environ.get("IBM_CLOUD_API_KEY")
+    project_id = os.environ.get("IBM_PROJECT_ID")
     
     # Initialize the model
     params = {

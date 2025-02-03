@@ -25,5 +25,7 @@ jobs:
       - name: Process Issue with LLM
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IBM_CLOUD_API_KEY: ${{secrets.IBM_CLOUD_API_KEY}}
+          IBM_PROJECT_ID: ${{secrets.IBM_PROJECT_ID}}
         run: |
           python .github/scripts/process-issue.py
