@@ -43,17 +43,21 @@ def generate_llm_response(context):
         params=params
     )
     
-    prompt = f"""You are a helpful developer assistant analyzing a GitHub issue.
-    Please provide a clear and practical solution to this issue:
-    
-    Title: {context['title']}
-    Description: {context['body']}
-    
-    Format your response with:
-    1. Brief analysis of the issue
-    2. Proposed solution with code examples if relevant
-    3. Any additional considerations or alternatives
-    """
+    prompt = f"""### Instruction:
+        You are a helpful and knowledgeable developer assistant. Your task is to analyze a GitHub issue and provide a clear and practical solution.
+
+        ### GitHub Issue Details:
+        - **Title:** {context['title']}
+        - **Description:** {context['body']}
+
+        ### Expected Response Format:
+        1. **Issue Analysis:** Briefly explain what might be causing the issue.
+        2. **Proposed Solution:** Provide a step-by-step solution, including relevant **commands** or **code snippets** if applicable.
+        3. **Additional Considerations:** Suggest any alternative solutions or best practices.
+
+        ### Response:
+        """
+
     
     response = model.generate(prompt)
     return response["results"][0]["generated_text"]
