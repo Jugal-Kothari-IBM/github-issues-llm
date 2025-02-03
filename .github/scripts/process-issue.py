@@ -11,7 +11,6 @@ def get_issue_context(issue_number):
     g = Github(os.environ["GITHUB_TOKEN"])
     repo = g.get_repo(os.environ["GITHUB_REPOSITORY"])
     issue = repo.get_issue(number=issue_number)
-    print("get issue context working correctly. repo ", repo)
     return {
         "title": issue.title,
         "body": issue.body,
@@ -30,12 +29,12 @@ def generate_llm_response(context):
         GenParams.MAX_NEW_TOKENS: 1024,
         GenParams.MIN_NEW_TOKENS: 50,
         GenParams.TEMPERATURE: 0.7,
-        GenParams.TOP_K: 50,
+        GenParams.TOP_K: 10,
         GenParams.TOP_P: 0.95
     }
     
     model = Model(
-        model_id=ModelTypes.FLAN_UL2,
+        model_id=ModelTypes.CODELLAMA_34B_INSTRUCT_HF,
         credentials={
             "apikey": api_key,
             "url": "https://us-south.ml.cloud.ibm.com"  # adjust region if needed
