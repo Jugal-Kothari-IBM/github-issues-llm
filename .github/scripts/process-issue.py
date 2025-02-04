@@ -34,7 +34,7 @@ def generate_llm_response(context):
     }
     
     model = Model(
-        model_id=ModelTypes.CODELLAMA_34B_INSTRUCT_HF,
+        model_id=ModelTypes.GRANITE_13B_INSTRUCT_V2,
         credentials={
             "apikey": api_key,
             "url": "https://us-south.ml.cloud.ibm.com"  # adjust region if needed
