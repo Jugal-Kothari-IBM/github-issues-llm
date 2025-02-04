@@ -35,7 +35,7 @@ def generate_llm_response(context):
     
     model = Model(
         # model_id=ModelTypes.GRANITE_34B_CODE_INSTRUCT,
-        model_id="ibm/granite-34b-code-instruct"
+        model_id="ibm/granite-34b-code-instruct",
         credentials={
             "apikey": api_key,
             "url": "https://us-south.ml.cloud.ibm.com"  # adjust region if needed
