@@ -44,32 +44,19 @@ def generate_llm_response(context):
     )
     
     prompt = f"""### Instruction:
-                You are a helpful and knowledgeable developer assistant. Your task is to analyze a GitHub issue and provide a clear and practical solution, formatted in **Markdown** for better readability.
+        You are a helpful and knowledgeable developer assistant. Your task is to analyze a GitHub issue and provide a clear and practical solution.
 
-                ### GitHub Issue Details:
-                - **Title:** {context['title']}
-                - **Description:** {context['body']}
+        ### GitHub Issue Details:
+        - **Title:** {context['title']}
+        - **Description:** {context['body']}
 
-                ### Expected Response Format:
-                Please format your response using **Markdown** for clarity. Use headings, bullet points, and code blocks where applicable.
+        ### Expected Response Format:
+        1. **Issue Analysis:** Briefly explain what might be causing the issue.
+        2. **Proposed Solution:** Provide a step-by-step solution, including relevant **commands** or **code snippets** if applicable.
+        3. **Additional Considerations:** Suggest any alternative solutions or best practices.
 
-                ```markdown
-                ## Issue Analysis
-                Briefly explain what might be causing the issue.
-
-                ## Proposed Solution
-                Provide a step-by-step solution, including relevant **commands** or **code snippets** if applicable.
-
-                ```bash
-                # Example command
-                npm install example-package
-
-                ## Additional considerations
-                Suggest any alternative solutions or best practices.
-
-                ### Response:
-            """
-
+        ### Response:
+        """
 
     
     response = model.generate(prompt)
